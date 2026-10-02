@@ -41,12 +41,26 @@
       <div class="duochrome" aria-hidden="true"><span></span><span></span></div>
     </div>
     <div class="intro">
-      <p>Book concert tickets on the same small website, but each time through a different lens. A lens changes how you see or control the page. Afterwards, compare how long it took and how hard it felt.</p>
-      <p class="note">A lens lasts a few minutes. The people it stands for live with it every day. Use it to ask better questions, not to say you know how it feels.</p>
+      <p class="lead">A small experiment about inclusive design. You book concert tickets on a fake website, while a <em>lens</em> changes how you see or control it.</p>
+      <div class="cta">
+        <button class="btn big" id="quickStart" type="button">Start with no lens</button>
+        <button class="linkbtn" id="toLenses" type="button">or choose a lens yourself</button>
+      </div>
       <p class="device-note">Works best on a laptop with a mouse.</p>
     </div>
 
-    <h2>Choose a lens</h2>
+    <section aria-labelledby="howTitle">
+      <h2 id="howTitle">How it works</h2>
+      <ol class="steps">
+        <li><b>Pick a lens</b><span>Start with No lens, so you know what the website normally feels like.</span></li>
+        <li><b>Read the task</b><span>The task appears at the top of the screen. Press Start task when you're ready. The timer starts.</span></li>
+        <li><b>Book the tickets</b><span>Do the task on the Nachtlicht website and press Book tickets. Stuck? Press Give up.</span></li>
+        <li><b>Rate and repeat</b><span>Say how hard it was, read what the lens stands for, then try the next lens.</span></li>
+      </ol>
+      <p class="note">A lens lasts a few minutes. The people it stands for live with it every day. Use it to ask better questions, not to say you know how it feels.</p>
+    </section>
+
+    <h2 id="lensTitle">Choose a lens</h2>
     <div class="lenses" id="lensList"></div>
 
     <h2>Results so far</h2>

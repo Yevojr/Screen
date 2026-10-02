@@ -133,8 +133,27 @@ function newRound(lensId){
   $('#giveUpBtn').hidden = true;
   $('#backBtn').hidden = false;
   stage.className = 'stage';
-  stage.innerHTML = '<div class="placeholder">Read the task above. The timer starts when you press Start task.</div>';
+  stage.innerHTML = placeholderHTML(lensId);
   view('round');
+}
+
+const TIPS = {
+  none: 'Nothing changes. This round is your baseline to compare the other lenses with.',
+  blur: 'The website will be out of focus.',
+  protan: 'The colours on the website will look different.',
+  colour: 'The colours on the website will look different.',
+  tritan: 'The colours on the website will look different.',
+  achro: 'The colours on the website will look different.',
+  tremor: 'Your real cursor disappears. Your click lands where the shaky arrow is, not where your hand is.',
+  keyboard: 'The mouse is switched off. Press Tab to move between items, and Enter or Space to press them.',
+  letters: 'The letters inside words will keep moving around.'
+};
+function placeholderHTML(lensId){
+  return '<div class="placeholder"><p class="ph-title">Ready?</p><ol class="ph-steps">'
+    + '<li>Read the task at the top of the screen.</li>'
+    + '<li>Press <b>Start task</b>. The timer starts and the Nachtlicht website appears here.</li>'
+    + '<li>Book the tickets the task asks for, then press <b>Book tickets</b> on the website.</li>'
+    + '</ol><p class="ph-tip"><b>This lens:</b> ' + TIPS[lensId] + '</p></div>';
 }
 
 /* ---------- fake website ---------- */
@@ -284,7 +303,7 @@ function startTremor(){
   };
   T.raf = requestAnimationFrame(loop);
 }
-function stopTremor(){ cancelAnimationFrame(T.raf); T.raf = 0; fake.toggleAttribute('hidden', true); }
+function stopTremor(){ cancelAnimationFrame(T.raf); T.raf = 0; fake.setAttribute('hidden', ''); }
 
 stage.addEventListener('mousemove', e => { T.rx = e.clientX; T.ry = e.clientY; T.inside = true; });
 stage.addEventListener('mouseleave', () => { T.inside = false; });
@@ -354,6 +373,8 @@ function stopScramble(){
 
 /* ---------- buttons ---------- */
 $('#startBtn').addEventListener('click', beginTask);
+$('#quickStart').addEventListener('click', () => newRound('none'));
+$('#toLenses').addEventListener('click', () => $('#lensTitle').scrollIntoView({behavior:'smooth', block:'start'}));
 $('#giveUpBtn').addEventListener('click', () => finish(false));
 $('#backBtn').addEventListener('click', () => { S = null; view('home'); });
 $('#saveBtn').addEventListener('click', () => {
