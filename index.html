@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Same page, different eyes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<!-- Applies the saved light/dark theme before the page draws, so it doesn't flash -->
+<script>
+(function(){var t="light";try{t=localStorage.getItem("same-page-different-eyes:theme")||"light";}catch(e){}document.documentElement.setAttribute("data-theme",t);})();
+</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="protanopia" color-interpolation-filters="linearRGB">
+    <feColorMatrix type="matrix" values="0.152286 1.052583 -0.204868 0 0  0.114503 0.786281 0.099216 0 0  -0.003882 -0.048116 1.051998 0 0  0 0 0 1 0"/>
+  </filter>
+  <filter id="deuteranopia" color-interpolation-filters="linearRGB">
+    <feColorMatrix type="matrix" values="0.367322 0.860646 -0.227968 0 0  0.280085 0.672501 0.047413 0 0  -0.011820 0.042940 0.968881 0 0  0 0 0 1 0"/>
+  </filter>
+  <filter id="tritanopia" color-interpolation-filters="linearRGB">
+    <feColorMatrix type="matrix" values="1.255528 -0.076749 -0.178779 0 0  -0.078411 0.930809 0.147602 0 0  0.004733 0.691367 0.303900 0 0  0 0 0 1 0"/>
+  </filter>
+  <filter id="achromatopsia" color-interpolation-filters="linearRGB">
+    <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0 0 0 1 0"/>
+  </filter>
+</svg>
+
+<main>
+  <div class="topbar"><button class="theme-btn" id="themeBtn" type="button"></button></div>
+  <!-- HOME -->
+  <section id="home">
+    <div class="chart" role="img" aria-label="Same page, different eyes">
+      <div class="chart-row r1" aria-hidden="true"><span class="l">SAME</span><span class="acuity">20/200</span></div>
+      <div class="chart-row r2" aria-hidden="true"><span class="l">PAGE</span><span class="acuity">20/100</span></div>
+      <div class="chart-row r3" aria-hidden="true"><span class="l">DIFFERENT</span><span class="acuity">20/50</span></div>
+      <div class="chart-row r4" aria-hidden="true"><span class="l">EYES</span><span class="acuity">20/30</span></div>
+      <div class="duochrome" aria-hidden="true"><span></span><span></span></div>
+    </div>
+    <div class="intro">
+      <p>Book concert tickets on the same small website, but each time through a different lens. A lens changes how you see or control the page. Afterwards, compare how long it took and how hard it felt.</p>
+      <p class="note">A lens lasts a few minutes. The people it stands for live with it every day. Use it to ask better questions, not to say you know how it feels.</p>
+      <p class="device-note">Works best on a laptop with a mouse.</p>
+    </div>
+
+    <h2>Choose a lens</h2>
+    <div class="lenses" id="lensList"></div>
+
+    <h2>Results so far</h2>
+    <div id="results"></div>
+  </section>
+
+  <!-- ROUND -->
+  <section id="round" hidden>
+    <div class="round-bar">
+      <p class="task"><small id="roundLens"></small><span id="roundTask"></span><span class="sub">Use any email address, a made-up one is fine.</span></p>
+      <div class="timer" id="timer" aria-live="off">0.0 s</div>
+      <div class="actions">
+        <button class="btn" id="startBtn">Start task</button>
+        <button class="btn ghost" id="giveUpBtn" hidden>Give up</button>
+        <button class="btn ghost" id="backBtn">Back</button>
+      </div>
+    </div>
+    <div class="stage" id="stage" tabindex="-1">
+      <div class="placeholder" id="placeholder">Read the task above. The timer starts when you press Start task.</div>
+    </div>
+  </section>
+
+  <!-- DONE -->
+  <section id="done" hidden>
+    <h2 id="doneTitle" style="margin-top:24px">Booked</h2>
+    <div class="stats">
+      <div class="stat"><b id="dTime">0.0 s</b><span>Time</span></div>
+      <div class="stat"><b id="dMiss">0</b><span>Misclicks</span></div>
+      <div class="stat"><b id="dErr">0</b><span>Wrong attempts</span></div>
+    </div>
+
+    <h2>How hard was that?</h2>
+    <div class="scale" id="scale" role="group" aria-label="Difficulty from 1, very easy, to 5, very hard"></div>
+    <p class="field-error" id="scaleError" role="alert"></p>
+
+    <div class="explain">
+      <div><h3>What this lens stands for</h3><p id="dAbout"></p></div>
+      <div><h3>What designers can do</h3><p id="dFix"></p></div>
+    </div>
+
+    <div class="done-actions">
+      <button class="btn" id="saveBtn">Save and choose next lens</button>
+      <button class="btn ghost" id="discardBtn">Discard this round</button>
+    </div>
+  </section>
+</main>
+
+<svg id="fakeCursor" hidden viewBox="0 0 20 20" aria-hidden="true"><path d="M2 1 L2 16 L6 12 L9 18 L11.5 17 L8.6 11 L14 11 Z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/></svg>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
