@@ -143,7 +143,7 @@ const TIPS = {
   protan: 'The colours on the website will match red-blind colour blindness.',
   deuteran: 'The colours on the website will match green-blind colour blindness.',
   tritan: 'The colours on the website will match blue-blind colour blindness.',
-  achro: 'The colours on the website will look different.',
+  achro: 'The colours on the website will be in black and white.',
   tremor: 'Your real cursor disappears. Your click lands where the shaky arrow is, not where your hand is.',
   keyboard: 'The mouse is switched off. Press Tab to move between items, and Enter or Space to press them.',
   letters: 'The letters inside words will keep moving around.'
