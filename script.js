@@ -140,9 +140,9 @@ function newRound(lensId){
 const TIPS = {
   none: 'Nothing changes. This round is your baseline to compare the other lenses with.',
   blur: 'The website will be out of focus.',
-  protan: 'The colours on the website will look different.',
-  colour: 'The colours on the website will look different.',
-  tritan: 'The colours on the website will look different.',
+  protan: 'The colours on the website will match red-blind colour blindness.',
+  deuteran: 'The colours on the website will match green-blind colour blindness.',
+  tritan: 'The colours on the website will match blue-blind colour blindness.',
   achro: 'The colours on the website will look different.',
   tremor: 'Your real cursor disappears. Your click lands where the shaky arrow is, not where your hand is.',
   keyboard: 'The mouse is switched off. Press Tab to move between items, and Enter or Space to press them.',
